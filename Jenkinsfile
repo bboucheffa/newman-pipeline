@@ -30,6 +30,11 @@ pipeline {
                     echo Installation de Newman...
                     npm install -g newman
                 )
+
+                npm list -g newman-reporter-html || (
+                    echo Installation du reporter HTML...
+                    npm install -g newman-reporter-html
+                )
                 '''
             }
         }
