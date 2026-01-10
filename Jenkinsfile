@@ -26,15 +26,8 @@ pipeline {
                     exit /b 1
                 )
 
-                newman --version || (
-                    echo Installation de Newman...
-                    npm install -g newman
-                )
-
-                npm list -g newman-reporter-html || (
-                    echo Installation du reporter HTML...
-                    npm install -g newman-reporter-html
-                )
+                npm install newman --no-save
+                npm install newman-reporter-html --no-save
                 '''
             }
         }
