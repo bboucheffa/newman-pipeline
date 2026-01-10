@@ -47,7 +47,7 @@ pipeline {
 
                 newman run %COLLECTION% ^
                   -r html ^
-                  --reporter-html-export %REPORT_DIR%\\report.html
+                  --reporter-html-export %REPORT_DIR%\\report2.html
                 '''
 
             }
