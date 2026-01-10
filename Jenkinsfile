@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-
+                checkout scm
             }
         }
 
@@ -22,7 +22,7 @@ pipeline {
 
         stage('Rapport generate') {
             steps {
-                
+
             }
         }
     }
