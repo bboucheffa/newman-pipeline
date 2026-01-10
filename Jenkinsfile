@@ -16,17 +16,17 @@ pipeline {
         stage('Dependencies install') {
             steps {
                 bat '''
-                where node || (
+                node --version || (
                     echo Node.js non installé
                     exit /b 1
                 )
 
-                where npm || (
+                npm --version || (
                     echo npm non installé
                     exit /b 1
                 )
 
-                where newman || (
+                newman --version || (
                     echo Installation de Newman...
                     npm install -g newman
                 )
