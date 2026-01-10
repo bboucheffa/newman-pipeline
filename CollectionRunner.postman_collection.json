@@ -1,0 +1,376 @@
+{
+	"info": {
+		"_postman_id": "4a9a1b2c-13cc-44f9-91cb-18e2a5d2f605",
+		"name": "CollectionRunner",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31083953",
+		"_collection_link": "https://lively-trinity-603116.postman.co/workspace/WorkspaceDsmTeam~4a53f5d4-6075-4414-ae11-c1bcfcb5bfe2/collection/31083953-4a9a1b2c-13cc-44f9-91cb-18e2a5d2f605?action=share&source=collection_link&creator=31083953"
+	},
+	"item": [
+		{
+			"name": "user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"    if(pm.response.to.have.status(201)) {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.collectionVariables.set(\"newId\", jsonData.id);\r",
+							"    console.info('l id du client est ' + pm.collectionVariables.get(\"newId\"));\r",
+							" \r",
+							"}else{\r",
+							"    console.info('client non créer');\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"pm.test.skip(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"Created\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Kamel B\",\r\n    \"car\": \"Dacia Sandero\",\r\n    \"address\": [],\r\n    \"experience\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://695bcf701d8041d5eeb88ad5.mockapi.io/testapi/api/v1/drivers",
+					"protocol": "https",
+					"host": [
+						"695bcf701d8041d5eeb88ad5",
+						"mockapi",
+						"io"
+					],
+					"path": [
+						"testapi",
+						"api",
+						"v1",
+						"drivers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    if(pm.response.to.have.status(200)) {\r",
+							"        console.info('le client ' + pm.collectionVariables.get('newId') + ' a été mis à jour avec succès');\r",
+							"    }else{\r",
+							"        console.info('le client ' + pm.collectionVariables.get('newId') + ' n a pas été mis à jour');\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"pm.test.skip(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Badis Boucheffa\",\r\n    \"car\": \"Dacia Logan\",\r\n    \"address\": [],\r\n    \"experience\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://695bcf701d8041d5eeb88ad5.mockapi.io/testapi/api/v1/drivers/{{newId}}",
+					"protocol": "https",
+					"host": [
+						"695bcf701d8041d5eeb88ad5",
+						"mockapi",
+						"io"
+					],
+					"path": [
+						"testapi",
+						"api",
+						"v1",
+						"drivers",
+						"{{newId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.test('Vérifier le nom', function() {\r",
+							"    pm.expect(jsonData.name).to.eql(\"Badis Boucheffa\");\r",
+							"    console.info('j ai bien trouvé le client dont l id est ' + pm.collectionVariables.get(\"newId\") + ' et son nom est ' + jsonData.name);\r",
+							"});\r",
+							"\r",
+							"pm.test('Vérifier la voiture', function() {\r",
+							"    pm.expect(jsonData.car).to.eql(\"Dacia Logan\");\r",
+							"    console.info('j ai bien trouvé le client dont l id est ' + pm.collectionVariables.get(\"newId\") + ' avec sa voiture ' + jsonData.car);\r",
+							"});\r",
+							"\r",
+							"pm.test.skip(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://695bcf701d8041d5eeb88ad5.mockapi.io/testapi/api/v1/drivers/{{newId}}",
+					"protocol": "https",
+					"host": [
+						"695bcf701d8041d5eeb88ad5",
+						"mockapi",
+						"io"
+					],
+					"path": [
+						"testapi",
+						"api",
+						"v1",
+						"drivers",
+						"{{newId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    if(pm.response.to.have.status(200)) {\r",
+							"        console.info('Le client dont l id ' + pm.collectionVariables.get(\"newId\") + ' a été supprimé avec succès.');\r",
+							"    }else{\r",
+							"        console.error('Le client n a pas été supprimé avec succès.');\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"pm.test.skip(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://695bcf701d8041d5eeb88ad5.mockapi.io/testapi/api/v1/drivers/{{newId}}",
+					"protocol": "https",
+					"host": [
+						"695bcf701d8041d5eeb88ad5",
+						"mockapi",
+						"io"
+					],
+					"path": [
+						"testapi",
+						"api",
+						"v1",
+						"drivers",
+						"{{newId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"    if(pm.response.to.have.status(404)) {\r",
+							"        pm.expect(pm.response.text()).to.include(\"Not found\");\r",
+							"    }\r",
+							"});\r",
+							"pm.test.skip(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://695bcf701d8041d5eeb88ad5.mockapi.io/testapi/api/v1/drivers/{{newId}}",
+					"protocol": "https",
+					"host": [
+						"695bcf701d8041d5eeb88ad5",
+						"mockapi",
+						"io"
+					],
+					"path": [
+						"testapi",
+						"api",
+						"v1",
+						"drivers",
+						"{{newId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": ""
+		},
+		{
+			"key": "newId",
+			"value": ""
+		},
+		{
+			"value": ""
+		}
+	]
+}
