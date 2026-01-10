@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        COLLECTION = 'CollectionRunner.postman_collection.json'
+        REPORT_DIR = 'newman-report'
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -32,13 +37,20 @@ pipeline {
         stage('Run Newman') {
             steps {
                 bat '''
-                newman run CollectionRunner.postman_collection.json
+                newman run %COLLECTION%
                 '''
             }
         }
 
         stage('Rapport generate') {
             steps {
+                bat '''
+                if not exist %REPORT_DIR% mkdir %REPORT_DIR%
+
+                newman run %COLLECTION% ^
+                  -r html ^
+                  --reporter-html-export %REPORT_DIR%\\report.html
+                '''
 
             }
         }
