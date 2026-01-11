@@ -38,7 +38,7 @@ pipeline {
                 bat '''
                 if not exist %REPORT_DIR% mkdir %REPORT_DIR%
 
-                node_modules\\.bin\\newman.cmd newman run %COLLECTION% ^
+                newman run %COLLECTION% ^
                   -r html ^
                   --reporter-html-export %REPORT_DIR%\\report.html
                 '''
