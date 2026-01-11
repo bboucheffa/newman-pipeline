@@ -29,7 +29,7 @@ pipeline {
         stage('Run Newman') {
             steps {
                 bat '''
-                newman run %COLLECTION%
+                node_modules\.bin\newman run %COLLECTION%
                 '''
             }
         }
@@ -39,7 +39,7 @@ pipeline {
                 bat '''
                 if not exist %REPORT_DIR% mkdir %REPORT_DIR%
 
-                newman run %COLLECTION% ^
+                node_modules\.bin\newman run %COLLECTION% ^
                   -r html ^
                   --reporter-html-export %REPORT_DIR%\\report2.html
                 '''
