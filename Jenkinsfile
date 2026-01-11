@@ -20,9 +20,7 @@ pipeline {
 
                 npm --version
 
-                npm install newman --no-save
-
-                npm install newman-reporter-html --no-save
+                npm install newman newman-reporter-html --no-save
                 '''
             }
         }
