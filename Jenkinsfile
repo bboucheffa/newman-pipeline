@@ -16,15 +16,9 @@ pipeline {
         stage('Dependencies install') {
             steps {
                 bat '''
-                node --version || (
-                    echo Node.js non installé
-                    exit /b 1
-                )
+                node --version
 
-                npm --version || (
-                    echo npm non installé
-                    exit /b 1
-                )
+                npm --version
 
                 npm install newman --no-save
                 npm install newman-reporter-html --no-save
