@@ -47,7 +47,7 @@ pipeline {
     }
     post {
         always {
-            archiveArtifacts artifacts: 'newman-report/report.html', allowEmptyArchive: true 
+            archiveArtifacts artifacts: 'newman-report/report.html', allowEmptyArchive: true
         }
     }
 }

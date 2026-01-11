@@ -26,7 +26,7 @@
 							"    }\r",
 							"});\r",
 							"\r",
-							"pm.test.skip(\"Response time is less than 2000ms\", function () {\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
 							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
 							"});\r",
 							"\r",
