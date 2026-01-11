@@ -21,6 +21,7 @@ pipeline {
                 npm --version
 
                 npm install newman --no-save
+                
                 npm install newman-reporter-html --no-save
                 '''
             }
@@ -41,7 +42,7 @@ pipeline {
 
                 npx newman run %COLLECTION% ^
                   -r html ^
-                  --reporter-html-export %REPORT_DIR%\\report2.html
+                  --reporter-html-export %REPORT_DIR%\\report.html
                 '''
             }
         }
