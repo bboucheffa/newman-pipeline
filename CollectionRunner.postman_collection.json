@@ -93,6 +93,68 @@
 			"response": []
 		},
 		{
+			"name": "user created",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.test('Vérifier le nom', function() {\r",
+							"    pm.expect(jsonData.name).to.eql(\"Kamel B\");\r",
+							"    console.info('j ai bien trouvé le client dont l id est ' + pm.collectionVariables.get(\"newId\") + ' et son nom est ' + jsonData.name);\r",
+							"});\r",
+							"\r",
+							"pm.test('Vérifier la voiture', function() {\r",
+							"    pm.expect(jsonData.car).to.eql(\"Dacia Sandero\");\r",
+							"    console.info('j ai bien trouvé le client dont l id est ' + pm.collectionVariables.get(\"newId\") + ' avec sa voiture ' + jsonData.car);\r",
+							"});\r",
+							"\r",
+							"pm.test.skip(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://695bcf701d8041d5eeb88ad5.mockapi.io/testapi/api/v1/drivers/{{newId}}",
+					"protocol": "https",
+					"host": [
+						"695bcf701d8041d5eeb88ad5",
+						"mockapi",
+						"io"
+					],
+					"path": [
+						"testapi",
+						"api",
+						"v1",
+						"drivers",
+						"{{newId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "user",
 			"event": [
 				{
@@ -151,7 +213,7 @@
 			"response": []
 		},
 		{
-			"name": "user",
+			"name": "user updated",
 			"event": [
 				{
 					"listen": "test",
@@ -272,7 +334,7 @@
 			"response": []
 		},
 		{
-			"name": "user",
+			"name": "user deleted",
 			"event": [
 				{
 					"listen": "test",
