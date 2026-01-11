@@ -43,7 +43,6 @@ pipeline {
                   -r html ^
                   --reporter-html-export %REPORT_DIR%\\report2.html
                 '''
-
             }
         }
     }
