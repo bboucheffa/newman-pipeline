@@ -20,7 +20,7 @@ pipeline {
 
                 npm --version
 
-                npm install newman newman-reporter-html --no-save
+                npm install -g newman newman-reporter-html --no-save
                 '''
             }
         }
@@ -38,7 +38,7 @@ pipeline {
                 bat '''
                 if not exist %REPORT_DIR% mkdir %REPORT_DIR%
 
-                newman run %COLLECTION% ^
+                npx newman run %COLLECTION% ^
                   -r html ^
                   --reporter-html-export %REPORT_DIR%\\report.html
                 '''
