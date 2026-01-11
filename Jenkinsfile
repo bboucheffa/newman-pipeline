@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         COLLECTION = 'CollectionRunner.postman_collection.json'
-        REPORT_DIR = 'newman-report'
+        REPORT_DIR = 'newman-report' 
     }
 
     stages {
@@ -21,7 +21,7 @@ pipeline {
                 npm --version
 
                 npm install newman --no-save
-                
+
                 npm install newman-reporter-html --no-save
                 '''
             }
