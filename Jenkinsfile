@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         COLLECTION = 'CollectionRunner.postman_collection.json'
-        REPORT_DIR = 'newman-report' 
+        REPORT_DIR = 'newman-report'
     }
 
     stages {
@@ -40,14 +40,14 @@ pipeline {
 
                 npx newman run %COLLECTION% ^
                 -r htmlextra ^
-                --reporter-htmlextra-export newman-report\report.html
+                --reporter-htmlextra-export %REPORT_DIR%\\report.html
                 '''
             }
         }
     }
     post {
         always {
-            archiveArtifacts artifacts: 'newman-report\\report.html', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'newman-report/report.html', allowEmptyArchive: true
         }
     }
 }
