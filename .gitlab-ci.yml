@@ -1,0 +1,32 @@
+stages:
+  - test
+
+variables:
+  COLLECTION: "CollectionRunner.postman_collection.json"
+  REPORT_DIR: "newman-report"
+
+newman_tests:
+  stage: test
+  image: node:18
+
+  script:
+    # Vérifier versions
+    - node --version
+    - npm --version
+
+    # Installer Newman + reporter html
+    - npm install newman newman-reporter-htmlextra --no-save
+
+    # Créer le dossier du rapport
+    - mkdir -p "$REPORT_DIR"
+
+    # Lancer Newman + générer le rapport HTML
+    - npx newman run "$COLLECTION" \
+        -r htmlextra \
+        --reporter-htmlextra-export "$REPORT_DIR/report.html"
+
+  artifacts:
+    when: always
+    expire_in: 7 days
+    paths:
+      - newman-report/report.html
