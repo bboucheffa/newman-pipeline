@@ -20,7 +20,7 @@ newman_tests:
     # Créer le dossier du rapport
     - mkdir -p "$REPORT_DIR"
 
-    # Lancer Newman et générer le rapport HTML
+    # Lancer Newman et générer le rapport HTML 
     - npx newman run "$COLLECTION" \
         -r htmlextra \
         --reporter-htmlextra-export "$REPORT_DIR/report.html"
